@@ -2,7 +2,9 @@
 
 
 II__Deepfake-Detection-Models/.ipynb_checkpoints
-II__Deepfake-Detection-Models/Model-1/.ipynb_checkpoints
+II__Deepfake-Detection-Models/Model-*/.ipynb_checkpoints
 
 
-[III__Flask-Web-Application/]
+III__Flask-Web-Application/__pycache__
+III__Flask-Web-Application/.venv
+III__Flask-Web-Application/Static/PY/__pycache__

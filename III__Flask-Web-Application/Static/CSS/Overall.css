@@ -1,0 +1,18 @@
+/**/
+body {
+    background-color: #D3D3FF;
+}
+
+.error {
+    background-color: rgb(255, 174, 201);
+    overflow: hidden;
+}
+
+.success {
+    background-color: rgb(126, 213, 165);
+    overflow: hidden;
+}
+
+.error ul, .success ul {
+    list-style: none;
+}

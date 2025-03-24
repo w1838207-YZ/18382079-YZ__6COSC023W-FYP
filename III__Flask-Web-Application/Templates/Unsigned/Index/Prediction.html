@@ -1,0 +1,25 @@
+<!---->
+{% extends "Base.html" %}
+
+<!---->
+{% block title %}Home{% endblock %}
+
+<!---->
+{% block header %}{% include "Unsigned/Navbar.html" %}{% endblock %}
+
+<!---->
+{% block content %}
+        <!---->
+        {% if interpretation[-1] == 0 %}
+        <p>FAKE!</p>
+        <p>percentage fake:  {{ interpretation[0] }}%</p>
+        <p>percentage real:  {{ interpretation[1] }}%</p>
+        {% elif interpretation[-1] == 1 %}
+        <p>REAL!</p>
+        <p>percentage fake:  {{ interpretation[0] }}%</p>
+        <p>percentage real:  {{ interpretation[1] }}%</p>
+        {% endif %}
+{% endblock %}
+
+<!---->
+{% block footer %}<!---->{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!---->
+        <title>{% block title %}{% endblock %}</title>
+        <!---->
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Overall.css') }}">
+    </head>
+    
+    
+    <body>
+        <!---->{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}{% for category, message in messages %}
+        <div class="{{category}}">
+            <p>{{ message }}<p>
+        </div>{% endfor %}{% endif %}{% endwith %}
+        
+        {% block header %}{% endblock %}
+        {% block content %}{% endblock %}
+        {% block footer %}{% endblock %}
+    </body>
+</html>
