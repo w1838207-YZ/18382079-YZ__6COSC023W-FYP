@@ -1,25 +1,24 @@
-<!---->
 {% extends "Base.html" %}
 
-<!---->
 {% block title %}Home{% endblock %}
 
-<!---->
+{% block alert %}{% include "Alert.html" %}{% endblock %}
+
 {% block header %}{% include "Unsigned/Navbar.html" %}{% endblock %}
 
-<!---->
 {% block content %}
-        <!---->
-        {% if interpretation[-1] == 0 %}
-        <p>FAKE!</p>
-        <p>percentage fake:  {{ interpretation[0] }}%</p>
-        <p>percentage real:  {{ interpretation[1] }}%</p>
-        {% elif interpretation[-1] == 1 %}
-        <p>REAL!</p>
-        <p>percentage fake:  {{ interpretation[0] }}%</p>
-        <p>percentage real:  {{ interpretation[1] }}%</p>
+    <img src="data:image/jpeg;base64,{{ image_data }}"><br>
+    {% for i in range (0,model_count_picked) %}
+        <p>Model Name:  {{ context[i]["model_name"] }}</p>
+        {% if context[i]["prediction_interpretation"][-1] == 0 %}
+            <p>Your image has been predicted to be a:  fake image!</p>
+            <p>The percentage for this prediction is:  {{ context[i]["prediction_interpretation"][0] }}%</p>
+        {% elif context[i]["prediction_interpretation"][-1] == 1 %}
+            <p>Your image has been predicted to be a:  real image!</p>
+            <p>The percentage for this prediction is:  {{ context[i]["prediction_interpretation"][1] }}%</p>
         {% endif %}
+    {% endfor %}<br><br>
+    <p>[This classification was made by an AI model. Please bear in mind that AI predictions may not always be correct and can be wrong.]</p>
 {% endblock %}
 
-<!---->
-{% block footer %}<!---->{% endblock %}
+{% block footer %}{% endblock %}

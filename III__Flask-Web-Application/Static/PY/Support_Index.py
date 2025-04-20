@@ -4,6 +4,10 @@ import os
 
 #
 #
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+
+#
+#
 from PIL import Image
 
 #
@@ -22,11 +26,13 @@ import numpy as np
 
 
 #
+#
 allowed_extensions = ["jpg","jpeg"]
 
 
 
 
+#
 #
 def find_currently_available_models():
     
@@ -50,16 +56,19 @@ def find_currently_available_models():
 
 
 #
+#
 def is_file_allowed(uploaded_file_name):
     
     #
-    return (("." in uploaded_file_name) and (uploaded_file_name.rsplit(".", 1)[1].lower() in allowed_extensions))
+    return (("." in uploaded_file_name) and \
+            (uploaded_file_name.rsplit(".", 1)[1].lower() in allowed_extensions))
 
 
 
 
 #
-def image_classification_prediction(uploaded_file,picked_model_path):
+#
+def image_classification_prediction(picked_model_path,uploaded_file):
 
     #
     image_original = Image.open(uploaded_file)
@@ -80,6 +89,7 @@ def image_classification_prediction(uploaded_file,picked_model_path):
 
 
 
+#
 #
 def interpret_result(prediction):
     

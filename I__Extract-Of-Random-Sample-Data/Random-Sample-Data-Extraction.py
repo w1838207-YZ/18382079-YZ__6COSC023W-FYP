@@ -47,8 +47,10 @@ data_sample_specific_subdir6 = os.path.join(data_sample_general_subdir3,"Real")
 # Here is where the actual extraction of original dataset files eventually occurs.
 def copy_sample_data_from_original_dataset(path_slice_for_dataset_images,dataset_extract_subdir_flag,random_index_list):
     
-    # This for loop iterates over all random indices in the corresponding list. Initially each index value gets combined with path slices, to eventually make a full path to a source file from the original dataset.
+    # This for loop iterates over all random indices in the corresponding list.
     for existing_index in random_index_list:
+
+        # Initially each index value gets combined with path slices, to eventually make a full path to a source file from the original dataset.
         path_slice_extended = path_slice_for_dataset_images + str(existing_index) + ".jpg"
         full_source_file_path = os.path.join(original_dataset_files_path,path_slice_extended)
         
@@ -73,7 +75,7 @@ def copy_sample_data_from_original_dataset(path_slice_for_dataset_images,dataset
                 path_slice_for_copy_destination = "real_" + str(existing_index) + ".jpg"
                 full_path_for_copy_destination = os.path.join(data_sample_specific_subdir6,path_slice_for_copy_destination)
                 
-        # The Shutil function '.copyfile()' uses both source and destination paths, in order to take an original dataset file and copy it into the folders for sample data.
+        # The Shutil function '.copyfile()' uses both source and destination paths, in order to take an original dataset file and copy it into a folder for sample data.
         shutil.copyfile(full_source_file_path,full_path_for_copy_destination)
 
 
@@ -200,59 +202,59 @@ def validation_real_image_extraction():
 # The extractions for all subgroups of sample data files are included in this function, and ordered in a specific sequence.
 def ordered_sample_extractions():
 
-    # This try block attempts to extract the test fake files.
-    # In case any exception is thrown, this except block catches the exception, prints it, and raises one more with a less technical message.
-    try:
+
+    try:  # This try block attempts to extract the test fake files.
         test_fake_image_extraction()
         print("> The sample data for test fake images have been successfully extracted!")
     except Exception as e:
         print("|\n>",e)
         raise Exception("|\n> Exception! Something went wrong with extracting test fake images from the original dataset.")
+    #^ Its except block will catch an exception (should any be thrown), print it, and raise another one with a less technical message.
 
-    # This try block attempts to extract the test real files.
-    # In case any exception is thrown, this except block catches the exception, prints it, and raises one more with a less technical message.
-    try:
+    
+    try:  # This try block attempts to extract the test real files.
         test_real_image_extraction()
         print("> The sample data for test real images have been successfully extracted!")
     except Exception as e:
         print("|\n>",e)
         raise Exception("|\n> Exception! Something went wrong with extracting test real images from the original dataset.")
+    #^ Its except block will catch an exception (should any be thrown), print it, and raise another one with a less technical message.
 
-    # This try block attempts to extract the train fake files.
-    # In case any exception is thrown, this except block catches the exception, prints it, and raises one more with a less technical message.
-    try:
+
+    try:  # This try block attempts to extract the train fake files.
         train_fake_image_extraction()
         print("> The sample data for train fake images have been successfully extracted!")
     except Exception as e:
         print("|\n>",e)
         raise Exception("|\n> Exception! Something went wrong with extracting train fake images from the original dataset.")
+    #^ Its except block will catch an exception (should any be thrown), print it, and raise another one with a less technical message.
 
-    # This try block attempts to extract the train real files.
-    # In case any exception is thrown, this except block catches the exception, prints it, and raises one more with a less technical message.
-    try:
+
+    try:  # This try block attempts to extract the train real files.
         train_real_image_extraction()
         print("> The sample data for train real images have been successfully extracted!")
     except Exception as e:
         print("|\n>",e)
         raise Exception("|\n> Exception! Something went wrong with extracting train real images from the original dataset.")
+    #^ Its except block will catch an exception (should any be thrown), print it, and raise another one with a less technical message.
 
-    # This try block attempts to extract the validation fake files.
-    # In case any exception is thrown, this except block catches the exception, prints it, and raises one more with a less technical message.
-    try:
+    
+    try:  # This try block attempts to extract the validation fake files.
         validation_fake_image_extraction()
         print("> The sample data for validation fake images have been successfully extracted!")
     except Exception as e:
         print("|\n>",e)
         raise Exception("|\n> Exception! Something went wrong with extracting validation fake images from the original dataset.")
+    #^ Its except block will catch an exception (should any be thrown), print it, and raise another one with a less technical message.
 
-    # This try block attempts to extract the validation real files.
-    # In case any exception is thrown, this except block catches the exception, prints it, and raises one more with a less technical message.
-    try:
+
+    try:  # This try block attempts to extract the validation real files.
         validation_real_image_extraction()
         print("> The sample data for validation real images have been successfully extracted!")
     except Exception as e:
         print("|\n>",e)
         raise Exception("|\n> Exception! Something went wrong with extracting validation real images from the original dataset.")
+    #^ Its except block will catch an exception (should any be thrown), print it, and raise another one with a less technical message.
 
 
 
@@ -261,7 +263,7 @@ def ordered_sample_extractions():
 # It can also serve to remove previously extracted data, if this script file manages to locate said data and a user confirms said action.
 def make_data_sample_directories():
 
-    # This try block attempts to make the new data sample's folders, using folder paths kept in above variables.
+    # This try block attempts to make the new data sample's folders, using folder paths kept in above variables (from the beginning of this script).
     try:
 
         # This if statement uses the OS function '.path.isdir()' and the Shutil function '.rmtree()'. If a parent folder of pre-existing sample data can be found, then it gets deleted.
@@ -293,7 +295,7 @@ def make_data_sample_directories():
 
 
 
-# This function is for checking whether sample data extracted in the past currently exists in the same parent folder as this script file.
+# This function is for checking whether sample data extracted from the past currently exists within the same parent folder as this script file.
 # It serves to initiate a new process of sample data extraction, bearing in mind some conditions indicated by user input.
 def existing_sample_directories_check():
 
@@ -303,11 +305,11 @@ def existing_sample_directories_check():
         print("> Previously extracted sample data was found at the above path.")
         overwrite_data_decision = input("> Please enter 'Y' *only* if you wish to overwrite this pre-existing data.\n> Alternatively, enter any other value or no value if you wish not to overwrite.\n> ")
 
-        # This if statement checks for user confirmation in the prior question, about a new extraction bearing in mind removal of previous sample data.
+        # This if statement checks for user confirmation, on the prior question about a new extraction (bearing in mind removal of previous sample data).
         if (overwrite_data_decision.upper()=="Y"):
 
             # This try block attempts to perform extraction with overwriting.
-            # In case any exception is thrown, this except block catches the exception, prints it, and concludes the script's runtime.
+            # In case any exceptions are thrown, an except block catches said exceptions, prints them, and concludes the script's runtime.
             try:
                 make_data_sample_directories()
                 print("> The directories for the sample data have successfully been made!")
@@ -316,16 +318,16 @@ def existing_sample_directories_check():
             except Exception as e:
                 print(e,"|\n> This script's execution has finished.")
 
-        # In the event that the user doesn't confirm, this else clause doesn't perform extraction and concludes the script's runtime.
+        # In the event that the user doesn't confirm, this else clause avoids performing extraction and concludes the script's runtime.
         else:
             print("|\n> The pre-existing sample data has not been overwritten.")
             print("|\n> This script's execution has finished.")
 
     # In the event that previous sample data is not found, this else clause begins a new extraction without removal of data.
     else:
-        
+
         # This try block attempts to perform extraction without overwriting.
-        # In case any exception is thrown, this except block catches the exception, prints it, and concludes the script's runtime.
+        # In case any exceptions are thrown, an except block catches said exceptions, prints them, and concludes the script's runtime.
         try:
             print("> A creation of new sample data from nothing will begin now.\n|")
             make_data_sample_directories()
@@ -338,14 +340,14 @@ def existing_sample_directories_check():
 
 
 
-# This is the main function of this script file.
+# This is the 'main' function of this script file.
 # It serves as the main entry point, once the script's runtime begins.
 def main():
 
-    # This if statement uses the 'not' operator and OS function '.path.isdir()'. It checks whether the original Kaggle dataset is downloaded, unzipped, and exists in a given user's downloads folder.
+    # This if statement uses the 'not' operator and OS function '.path.isdir()'. It checks whether the original Kaggle dataset is downloaded, unzipped, and exists in a given user's 'Downloads' folder.
     if (not(os.path.isdir(original_dataset_files_path))):
 
-        # In the event that the original dataset files cannot be found, they are informed of this and the script's runtime also concludes here.
+        # In the event that original dataset files cannot be found, the user is informed of this and the script's runtime also concludes here.
         print("> This script could not find the images of the original dataset during its runtime.")
         print("> Please ensure that the dataset images are unzipped and stored in the downloads folder, before running this script again.")
         print("|\n> This script's execution has finished.")
@@ -357,7 +359,7 @@ def main():
 
 
 
-# This if statement checks a special Python variable '__name__'. It calls a main function, whenever it receives a 'True' value.
+# This if statement checks a special Python variable, '__name__'. It calls a main function whenever it receives a 'True' value.
 # The check is what lets this script be runnable in the first place.
 if (__name__=="__main__"):
     main()
