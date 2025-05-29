@@ -1,69 +1,11 @@
 #
-from flask import Flask
-
-#
-import secrets
-
-#
-import string
-
-#
-from Static.PY import Route_Index, Route_Login, Route_Register
-
-#
-import os
-
-#
-from flask_sqlalchemy import SQLAlchemy
-
-#
 from sqlalchemy import Column, Integer, String, DateTime, Double, ForeignKey
 
 #
 from datetime import datetime
 
-
-
-
 #
-def generate_secret_random_key(length_of_key):
-
-    #
-    characters = string.ascii_letters + string.digits + string.punctuation
-    
-    #
-    secret_key = "".join(secrets.choice(characters) for _ in range(length_of_key))
-    
-    #
-    return secret_key
-
-
-
-
-#
-app_sub_directory_base = os.path.abspath(os.path.dirname(__file__))
-
-
-
-
-#
-app = Flask(__name__)
-
-#
-app.config["SECRET_KEY"] = generate_secret_random_key(16)
-
-#
-app.config["SQLALCHEMY_DATABASE_URI"] = \
-    "sqlite:///" + os.path.join(app_sub_directory_base,"Databases","Database-YZ-DFD.db")
-
-#
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-
-
-
-#
-app_database = SQLAlchemy(app)
+from Database.Connection import app_database
 
 
 
@@ -114,44 +56,3 @@ class Classification(app_database.Model):
     #
     def __repr__(self):
         return f"A classification of '{self.predictedResult}' for the image '{self.uploadedImage}'"
-
-
-
-
-#
-@app.route("/", methods=["GET","POST"])
-def index_page():
-
-    #
-    return Route_Index.index_page()
-
-
-
-
-#
-@app.route("/login")
-def login_page():
-    
-    #
-    return Route_Login.login_page()
-
-
-
-
-#
-@app.route("/register")
-def register_page():
-    
-    #
-    return Route_Register.register_page()
-
-
-
-
-#
-with app.app_context():
-    app_database.create_all()
-
-#
-if (__name__=="__main__"):
-    app.run(debug=True)

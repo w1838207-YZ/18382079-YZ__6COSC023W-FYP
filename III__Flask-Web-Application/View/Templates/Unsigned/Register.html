@@ -1,0 +1,42 @@
+{% extends "Base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block alert %}{% include "Alert.html" %}{% endblock %}
+
+{% block header %}{% include "Unsigned/Navbar.html" %}{% endblock %}
+
+{% block content %}
+    <p>Welcome to the Register Page~</p>
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>{{ form.forename.label }}</td>
+                <td>{{ form.forename() }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.surname.label }}</td>
+                <td>{{ form.surname() }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.email.label }}</td>
+                <td>{{ form.email() }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label }}</td>
+                <td>{{ form.password() }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.confirm.label }}</td>
+                <td>{{ form.confirm() }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.submit() }}</td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}
+
+{% block footer %}{% endblock %}
