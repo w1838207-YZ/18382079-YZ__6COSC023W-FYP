@@ -47,7 +47,7 @@ def main():
     Route_Controller.outline_app_routes(app)
     
     #
-    app.run(debug=True)
+    app.run()
 
 
 

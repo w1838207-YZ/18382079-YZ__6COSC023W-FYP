@@ -8,6 +8,8 @@ III__Flask-Web-Application/.venv
 III__Flask-Web-Application/Database/Database-YZ-DFD.db
 III__Flask-Web-Application/Database/__pycache__
 III__Flask-Web-Application/Session/__pycache__
+III__Flask-Web-Application/Static/IMG
+III__Flask-Web-Application/Static/TMP
 III__Flask-Web-Application/View/Routes/__pycache__
 III__Flask-Web-Application/View/Supports/__pycache__
 III__Flask-Web-Application/.env
