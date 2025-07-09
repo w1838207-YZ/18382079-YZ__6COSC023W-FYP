@@ -1,0 +1,53 @@
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+{% extends "Shared/Base.html" %}
+
+{% block title %}DFClassify - Savings (Single){% endblock %}
+
+{% block content %}
+{% include "Signed/Navbar.html" %}
+{% include "Shared/Alert.html" %}
+        <br>
+        <br>
+        <div class="container1" id="saving">
+            <label for="upload">
+                You uploaded this image:&nbsp;&nbsp;{{ single_saving_from_user.uploadedImage }}
+            </label>
+            <br>
+            <br>
+            <img name="upload" id="upload" src="data:image/jpeg;base64,{{ image_encoded_string }}">
+            <br>
+            <br>
+            <label for="outcomes">
+                You can find below your predicted outcome(s):
+            </label>
+            <br>
+            <br>
+            <label>
+                (<b><span style="color:red">PLEASE REMEMBER</span></b> these are a machine learning
+                model's results, meaning they could be wrong)
+            </label>
+            <br>
+            <br>
+            <table name="outcomes" id="outcomes">
+                <tr>
+                    <th>Model Name:</th>
+                    <th>Prediction Result:</th>
+                    <th>Confidence Percentage (in %):</th>
+                </tr>
+                <tr>
+                    <td><input type="text" value="{{ single_saving_from_user.modelUsed }}" readonly></td>
+                    <td><input type="text" value="{{ single_saving_from_user.predictedResult }}" readonly></td>
+                    {% if single_saving_from_user.predictedResult=="Fake" %}
+                    <td><input type="text" value="{{ single_saving_from_user.percentFake }}" readonly></td>
+                    {% elif single_saving_from_user.predictedResult=="Real" %}
+                    <td><input type="text" value="{{ single_saving_from_user.percentReal }}" readonly></td>
+                    {% endif %}
+                </tr>
+            </table>
+        </div>
+{% endblock %}

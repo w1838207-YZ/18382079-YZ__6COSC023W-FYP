@@ -2,40 +2,16 @@
 from flask import Flask
 
 #
-import os
+from App_Configuration import class_to_configure_app
 
 #
-import secrets
+from Database.Create_DB import db as app_database
 
 #
-import string
+from Session.Add_Sessions import server_side_session
 
 #
-from Database.Connection import app_database
-
-#
-from View.Routes.Route_Controller import outline_app_routes
-
-
-
-
-#
-def generate_secret_random_key(length_of_key):
-
-    #
-    characters = string.ascii_letters + string.digits + string.punctuation
-    
-    #
-    secret_key = "".join(secrets.choice(characters) for _ in range(length_of_key))
-    
-    #
-    return secret_key
-
-
-
-
-#
-app_sub_directory_base = os.path.abspath(os.path.dirname(__file__))
+from View.Routes import Route_Controller, Delete_Middleware
 
 
 
@@ -44,13 +20,7 @@ app_sub_directory_base = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__,template_folder="View/Templates")
 
 #
-app.config["SECRET_KEY"] = generate_secret_random_key(64)
-
-#
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(app_sub_directory_base,"Database","Database-YZ-DFD.db")
-
-#
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config.from_object(class_to_configure_app)
 
 
 
@@ -65,11 +35,16 @@ def main():
     from Database.Table_Models import User, Classification
     
     #
-    outline_app_routes(app,app_database,User,Classification)
+    server_side_session.init_app(app)
     
     #
     with app.app_context():
         app_database.create_all()
+        Delete_Middleware.old_classification_record_deletion(app)
+    
+    
+    #
+    Route_Controller.outline_app_routes(app)
     
     #
     app.run(debug=True)

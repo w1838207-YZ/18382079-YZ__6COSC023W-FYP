@@ -1,18 +1,18 @@
-/**/
+* {
+    font-family: Consolas;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 body {
-    background-color: #D3D3FF;
-}
-
-.error {
-    background-color: rgb(255, 174, 201);
-    overflow: hidden;
-}
-
-.success {
-    background-color: rgb(126, 213, 165);
-    overflow: hidden;
-}
-
-.error ul, .success ul {
-    list-style: none;
+    background-color: rgb(211, 211, 255);
+    width: 100vw;
+    height: 100%;
+    background-image: url("../App_Background.jpg");
+    background-position-x: 0px;
+    background-position-y: -100px;
+    background-size: 1528px 860px;
+    background-repeat: no-repeat;
 }

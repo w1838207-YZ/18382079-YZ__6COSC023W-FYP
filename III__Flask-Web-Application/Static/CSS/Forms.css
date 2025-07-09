@@ -1,0 +1,130 @@
+.container1, .container2 {
+    background-color: rgb(211, 211, 255);
+    color: rgb(0, 0, 0);
+    border: 4px solid rgb(70, 62, 117);
+    margin: auto;
+}
+
+
+#upload1, #login, #register1, #logout, #prediction1, #savings, #saving {
+    width: 492px;
+    height: fit-content;
+    padding: 32px 39.5px;
+}
+
+
+#upload2, #register2, #prediction2 {
+    width: 492px;
+    height: fit-content;
+    font-size: 16px;
+    padding: 16px 39.5px;
+}
+
+
+#upload1 #title, #login #title, #register1 #title, #logout #title {
+    font-size: 26px;
+    width: fit-content;
+    margin: auto;
+}
+
+
+#upload1 table, #logout table, #prediction2 #right table {
+    width: fit-content;
+    margin: auto;
+}
+
+
+#upload1 table td, #upload1 table #image, #upload1 table select, #login table td, #register1 table td {
+    font-size: 16px;
+}
+
+
+#upload1 table select, #login table input, #register1 table input {
+    font-size: 16px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+#prediction2 #right select {
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+
+#login table input, #register1 table input {
+    padding: 0px 2.5px;
+}
+
+
+#upload1 table #image::file-selector-button {
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    transition: all 0.5s;
+    font-family: Consolas;
+    padding: 0px 2.5px;
+}
+
+
+#upload1 table #image::file-selector-button:hover {
+    border: 2px solid rgb(70, 62, 117);
+    background-color: rgb(70, 62, 117);
+    color: rgb(255, 255, 255);
+}
+
+
+#upload1 button, #login #button input, #register1 #button input, #logout button {
+    border: 2.5px solid rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    transition: all 0.5s;
+    padding: 10px 10px;
+    font-size: 26px;
+}
+
+
+#upload1 button:hover, #login #button input:hover, #register1 #button input:hover, #logout button:hover {
+    border: 2.5px solid rgb(70, 62, 117);
+    background-color: rgb(70, 62, 117);
+    color: rgb(255, 255, 255);
+}
+
+
+#upload1 #button, #login #button, #register1 #button {
+    width: fit-content;
+    margin: auto;
+}
+
+
+#logout button {
+    width: 95px;
+}
+
+
+#prediction2 #right button {
+    width: 45px;
+    height: 25px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    transition: all 0.5s;
+}
+
+
+#prediction2 #right button:hover {
+    border: none;
+    background-color: rgb(70, 62, 117);
+    color: rgb(255, 255, 255);
+}
+
+
+#prediction2 #left {
+    float: left;
+}
+
+
+#prediction2 #right {
+    float: right;
+}

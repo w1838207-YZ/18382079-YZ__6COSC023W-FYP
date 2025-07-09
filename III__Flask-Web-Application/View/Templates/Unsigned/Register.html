@@ -1,42 +1,75 @@
-{% extends "Base.html" %}
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+{% extends "Shared/Base.html" %}
 
-{% block title %}Register{% endblock %}
-
-{% block alert %}{% include "Alert.html" %}{% endblock %}
-
-{% block header %}{% include "Unsigned/Navbar.html" %}{% endblock %}
+{% block title %}DFClassify - Register Page{% endblock %}
 
 {% block content %}
-    <p>Welcome to the Register Page~</p>
-
-    <form method="post">
-        {{ form.hidden_tag() }}
-        <table>
-            <tr>
-                <td>{{ form.forename.label }}</td>
-                <td>{{ form.forename() }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.surname.label }}</td>
-                <td>{{ form.surname() }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.email.label }}</td>
-                <td>{{ form.email() }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label }}</td>
-                <td>{{ form.password() }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.confirm.label }}</td>
-                <td>{{ form.confirm() }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.submit() }}</td>
-            </tr>
-        </table>
-    </form>
+{% include "Unsigned/Navbar.html" %}
+{% include "Shared/Alert.html" %}
+        <br>
+        <br>
+        <div class="container1" id="register1">
+            <div id="title">Register to make a new <br>user account from here</div>
+            <br>
+            <br>
+            <form method="post">
+                {{ form.hidden_tag() }}
+                <table>
+                    <tr>
+                        <td><b>&nbsp;&nbsp;{{ form.forename.label }}</b></td>
+                        <td>&nbsp;&nbsp;{{ form.forename() }}</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><b>&nbsp;&nbsp;{{ form.surname.label }}</b></td>
+                        <td>&nbsp;&nbsp;{{ form.surname() }}</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><b>&nbsp;&nbsp;{{ form.email.label }}</b></td>
+                        <td>&nbsp;&nbsp;{{ form.email() }}</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><b>&nbsp;&nbsp;{{ form.password.label }}</b></td>
+                        <td>&nbsp;&nbsp;{{ form.password() }}</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><b>&nbsp;&nbsp;{{ form.confirm.label }}</b></td>
+                        <td>&nbsp;&nbsp;{{ form.confirm() }}</td>
+                    </tr>
+                </table>
+                <br>
+                <br>
+                <div id="button">{{ form.submit() }}</div>
+            </form>
+        </div>
+        <br>
+        <div class="container2" id="register2">
+            <p><b><span style="color:green">[NOTE]</span></b> You must use passwords which have:</p>
+            <ul>
+                <li>At least 8 characters in length</li>
+                <li>At least 1 uppercase and 1 lowercase letter</li>
+                <li>At least 1 numerical digit</li>
+                <li>At least 1 special character (e.g. ", #, $)</li>
+            </ul>
+        </div>
 {% endblock %}
-
-{% block footer %}{% endblock %}

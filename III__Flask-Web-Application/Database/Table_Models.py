@@ -2,10 +2,10 @@
 from sqlalchemy import Column, Integer, String, DateTime, Double, ForeignKey
 
 #
-from datetime import datetime
+from Database.Create_DB import db as app_database
 
 #
-from Database.Connection import app_database
+from datetime import datetime
 
 
 
@@ -30,7 +30,7 @@ class User(app_database.Model):
     
     #
     def __repr__(self):
-        return f"A user named '{self.userFirstName} {self.userLastName}'"
+        return f"An account for a user named:  '{self.userFirstName} {self.userLastName}'"
 
 
 
@@ -45,9 +45,10 @@ class Classification(app_database.Model):
     classifyID = Column(Integer,primary_key=True)
     predictedResult = Column(String(4),nullable=False)
     uploadedImage = Column(String(50),nullable=False)
-    percentReal = Column(Double,nullable=False)
+    modelUsed = Column(String(50),nullable=False)
     percentFake = Column(Double,nullable=False)
-    dateOfUpload = Column(DateTime,default=datetime.now(),nullable=False)
+    percentReal = Column(Double,nullable=False)
+    dateOfUpload = Column(DateTime,nullable=False)
     dateToDelete = Column(DateTime,nullable=True)
     
     #
@@ -55,4 +56,4 @@ class Classification(app_database.Model):
     
     #
     def __repr__(self):
-        return f"A classification of '{self.predictedResult}' for the image '{self.uploadedImage}'"
+        return f"A saved classification for an image called:  '{self.uploadedImage}'"

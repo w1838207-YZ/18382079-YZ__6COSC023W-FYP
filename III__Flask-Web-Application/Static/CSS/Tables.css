@@ -1,0 +1,72 @@
+#prediction1, #saving {
+    text-align: center;
+}
+
+
+#prediction1 label, #saving {
+    font-size: 16px;
+}
+
+
+#prediction1 img, #saving img {
+    width: 150px;
+    height: 150px;
+}
+
+
+#prediction1 table, #savings table, #saving table {
+    width: 492px;
+    justify-self: center;
+}
+
+
+#prediction1 table th, #prediction1 table td, #saving table th, #saving table td {
+    width: 164px;
+}
+
+
+#savings table th, #savings table td {
+    width: 82px;
+    font-size: 13px;
+}
+
+
+#prediction1 table input, #saving table input {
+    border: none;
+    background-color: rgb(211, 211, 255);
+    margin: 10px 0px;
+}
+
+
+#savings table td {
+    text-align: center;
+}
+
+
+#savings table input[type="text"] {
+    border: none;
+    background-color: rgb(211, 211, 255);
+    width: 78px;
+    align-self: center;
+    margin: 0px 4px;
+    font-size: 13px;
+}
+
+
+#savings table a {
+    background-color: rgb(211, 211, 255);
+    text-decoration: none;
+    transition: all 0.5s;
+    color: rgb(0, 128, 0);
+}
+
+
+#savings table a:hover {
+    color: rgb(255, 255, 255);
+}
+
+
+#prediction1 table, #prediction1 table th, #prediction1 table td, #savings table, #savings table th, #savings table td, #saving table, #saving table th, #saving table td {
+    border-collapse: collapse;
+    border: 2.5px solid rgb(70, 62, 117);
+}

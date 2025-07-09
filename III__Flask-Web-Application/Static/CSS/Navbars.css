@@ -1,94 +1,107 @@
-/**/
-body {
-    margin: 0;
-    min-width: 320px;
-}
-
-
-/**/
 .navbar {
-    overflow: hidden;
     background-color: rgb(70, 62, 117);
+    overflow: hidden;
 }
 
 
-/**/
-.navbar a {
-    float: left;
-    display: block;
+.navbar #navlogo, .navbar a {
     color: rgb(233, 255, 65);
-    text-align: center;
-    padding: 21px 24px;
     text-decoration: none;
+    float: left;
     font-size: 26px;
 }
 
 
-/**/
-.navbar #xmark {
-    padding: 20px 24.75px;
-    font-size: 28px;
+.navbar #navlogo, .navbar #navlinks a {
+    padding: 21px 21px;
 }
 
 
-/**/
-.navbar a.active {
-    background-color: rgb(116, 63, 254);
-    color: rgb(233, 255, 65);
+.navbar #navlinks, .navbar .toggle {
+    float: right;
 }
 
 
-/**/
-.navbar a:hover, .navbar a.active:hover {
+.navbar #navlinks {
+    display: flex;
+}
+
+
+.navbar #navlinks li {
+    list-style-type: none;
+}
+
+
+.navbar #navlinks a {
+    display: block;
+    transition: all 0.5s;
+}
+
+
+.navbar #navlinks a:hover {
     background-color: rgb(233, 255, 65);
     color: rgb(70, 62, 117);
 }
 
 
-/**/
+.navbar #navlinks a.active {
+    background-color: rgb(116, 63, 254);
+    color: rgb(233, 255, 65);
+}
+
+
+.navbar #bars i {
+    font-size: 23px;
+    padding: 25px 21px;
+}
+
+
+.navbar #xmark i {
+    font-size: 27px;
+    padding: 23px 21px;
+}
+
+
 .navbar .toggle {
     display: none;
 }
 
 
-/**/
 @media screen and (max-width: 640px) {
-    .navbar a:not(:first-child) {
-        display: none;
+
+    .navbar #navlinks {
+        background-color: rgb(70, 62, 117);/*rgb(255, 62, 117);*/
+        position: absolute;
+        top: 73px;
+        left: 0px;
+        right: 0px;
+        flex-direction: column;
+        overflow: hidden;
+        transition: all 0.75s;
     }
+
+    .navbar #navlinks a {
+        width: 100%;
+    }
+
     .navbar .toggle {
-        float: right;
         display: block;
     }
+
     .navbar #bars {
         display: block;
     }
+
     .navbar #xmark {
         display: none;
     }
-}
 
-
-/**/
-@media screen and (max-width: 640px) {
-    .navbar.responsive {
-        position: relative;
-    }
-    .navbar.responsive .toggle {
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .navbar.responsive #bars {
+    .navbar.dropped #bars {
         display: none;
     }
-    .navbar.responsive #xmark {
+
+    .navbar.dropped #xmark {
         display: block;
     }
-    .navbar.responsive a {
-        float: none;
-        display: block;
-        text-align: left;
-    }
+
 }

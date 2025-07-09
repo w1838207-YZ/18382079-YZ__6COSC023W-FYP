@@ -1,24 +1,56 @@
-{% extends "Base.html" %}
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+{% extends "Shared/Base.html" %}
 
-{% block title %}Home{% endblock %}
-
-{% block alert %}{% include "Alert.html" %}{% endblock %}
-
-{% block header %}{% include "Unsigned/Navbar.html" %}{% endblock %}
+{% block title %}DFClassify - Prediction Page{% endblock %}
 
 {% block content %}
-    <img src="data:image/jpeg;base64,{{ image_data }}"><br>
-    {% for i in range (0,model_count_picked) %}
-        <p>Model Name:  {{ context[i]["model_name"] }}</p>
-        {% if context[i]["prediction_interpretation"][-1] == 0 %}
-            <p>Your image has been predicted to be a:  fake image!</p>
-            <p>The percentage for this prediction is:  {{ context[i]["prediction_interpretation"][0] }}%</p>
-        {% elif context[i]["prediction_interpretation"][-1] == 1 %}
-            <p>Your image has been predicted to be a:  real image!</p>
-            <p>The percentage for this prediction is:  {{ context[i]["prediction_interpretation"][1] }}%</p>
-        {% endif %}
-    {% endfor %}<br><br>
-    <p>[This classification was made by an AI model. Please bear in mind that AI predictions may not always be correct and can be wrong.]</p>
+{% include "Unsigned/Navbar.html" %}
+{% include "Shared/Alert.html" %}
+        <br>
+        <br>
+        <div class="container1" id="prediction1">
+            <label for="upload">
+                You uploaded this image:&nbsp;&nbsp;{{ template_context["upload_name"] }}
+            </label>
+            <br>
+            <br>
+            <img name="upload" id="upload" src="data:image/jpeg;base64,{{ image_encoded_string }}">
+            <br>
+            <br>
+            <label for="outcomes">
+                You can find below your predicted outcome(s):
+            </label>
+            <br>
+            <br>
+            <label>
+                (<b><span style="color:red">PLEASE REMEMBER</span></b> these are a machine learning
+                model's results, meaning they could be wrong)
+            </label>
+            <br>
+            <br>
+            <table name="outcomes" id="outcomes">
+                <tr>
+                    <th>Model Name:</th>
+                    <th>Prediction Result:</th>
+                    <th>Confidence Percentage (in %):</th>
+                </tr>
+                {% for x in range(template_context["prediction_outcomes"] | length) %}
+                {% set outcome = template_context["prediction_outcomes"][x] %}
+                <tr>
+                    <td><input type="text" class="tagInput" name="table_model_{{x}}" id="table_model_{{x}}" value="{{ outcome["model"] }}" readonly></td>
+                    <td><input type="text" class="tagInput" name="table_result_{{x}}" id="table_result_{{x}}" value="{{ outcome["result"][-1] }}" readonly></td>
+                    {% if outcome["result"][-1]=="Fake" %}
+                    <td><input type="text" class="tagInput" name="table_percent_{{x}}" id="table_percent_{{x}}" value="{{ outcome["result"][0] }}" readonly></td>
+                    {% elif outcome["result"][-1]=="Real" %}
+                    <td><input type="text" class="tagInput" name="table_percent_{{x}}" id="table_percent_{{x}}" value="{{ outcome["result"][1] }}" readonly></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
 {% endblock %}
-
-{% block footer %}{% endblock %}

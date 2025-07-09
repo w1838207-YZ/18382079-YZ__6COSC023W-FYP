@@ -1,17 +1,29 @@
 #
-from flask import render_template, request, flash, redirect
+from flask import render_template, flash, redirect, request
 
 #
 from flask_wtf import FlaskForm
 
 #
-from wtforms import StringField, SubmitField, EmailField, PasswordField
+from wtforms import SubmitField, StringField, EmailField, PasswordField
 
 #
 from wtforms.validators import Email
 
 #
-import re
+import bcrypt
+
+#
+from Database.Create_DB import db as app_database
+
+#
+from Database.Table_Models import User
+
+#
+from View.Supports import Support_Register
+
+#
+from View.Routes import Temp_Middleware
 
 
 
@@ -35,21 +47,20 @@ class RegisterForm(FlaskForm):
     confirm = PasswordField("Confirm Password:",validators=[])
     
     #
-    submit = SubmitField("Register")
+    submit = SubmitField("Sign Up~")
 
 
 
 
 #
-def register_page(app_database, User, Classification):
+def register_page():
     
     #
     register_form = RegisterForm()
     
     #
     if (request.method=="GET"):
-        
-        #
+        Temp_Middleware.delete_temp_image_data()
         return render_template("Unsigned/Register.html",form=register_form)
     
     #
@@ -63,33 +74,44 @@ def register_page(app_database, User, Classification):
         input_confirm = register_form.confirm.data.strip()
         
         #
-        if ((not(input_forename))or(not(input_surname))or(not(input_email))or(not(input_password))or(not(input_confirm))):
-            flash("> A","error")
+        if not(Support_Register.input_complete_validation(input_forename,input_surname,input_email,input_password,input_confirm)):
+            flash("> A input incomplete","error")
             return redirect(request.url)
         
         #
-        if (" " in input_email):
-            flash("> B","error")
+        if not(Support_Register.email_space_validation(input_email)):
+            flash("> B email spaced","error")
             return redirect(request.url)
         
         #
-        valid_email_regex_pattern = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/"
-        if (re.search(valid_email_regex_pattern,input_email)):
-            flash("> C","error")
+        if not(Support_Register.pattern_valid_validation(input_email)):
+            flash("> C empattern invalid","error")
             return redirect(request.url)
         
         #
-        if (input_password!=input_confirm):
-            flash("> D","error")
+        if not(Support_Register.password_confirmed_validation(input_password,input_confirm)):
+            flash("> D password unconfirmed","error")
             return redirect(request.url)
         
         #
-        new_user = User(userEmail=input_email,userPassword=input_password,userFirstName=input_forename,userLastName=input_surname)
+        if not(Support_Register.password_strength_validation(input_password)):
+            flash("> E password weak","error")
+            return redirect(request.url)
         
         #
-        app_database.session.add(new_user)
-        app_database.session.commit()
+        bytes_of_input_password = input_password.encode("utf-8")
+        password_salt = bcrypt.gensalt()
+        password_salted_and_hashed = bcrypt.hashpw(bytes_of_input_password,password_salt)
         
         #
-        flash("> Hello World!","success")
-        return redirect("/")
+        try:
+            new_user = User(userEmail=input_email,userPassword=password_salted_and_hashed,userFirstName=input_forename,userLastName=input_surname)
+            app_database.session.add(new_user)
+            app_database.session.commit()
+            flash("> Hello World! registered","success")
+            return redirect("/login")
+        
+        #
+        except:
+            flash("> YZ can't register","error")
+            return redirect(request.url)

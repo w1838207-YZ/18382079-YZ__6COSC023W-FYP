@@ -1,0 +1,32 @@
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+{% extends "Shared/Base.html" %}
+
+{% block title %}DFClassify - Logout Page{% endblock %}
+
+{% block content %}
+{% include "Signed/Navbar.html" %}
+{% include "Shared/Alert.html" %}
+        <br>
+        <br>
+        <div class="container1" id="logout">
+            <div id="title">Are you sure you want to <br>log out of your account?</div>
+            <br>
+            <br>
+            <form method="post">
+                <table>
+                    <tr>
+                        <td><button type="submit" name="yes">Yes</button></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td><button type="submit" name="no">No</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+{% endblock %}

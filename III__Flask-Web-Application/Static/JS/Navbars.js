@@ -1,30 +1,48 @@
 //
 function dropdown() {
+
     //
-    var navbar = document.getElementById("navbar");
+    let navbar = document.getElementById("navbar");
+
     //
-    if (navbar.classList.contains("responsive")) {
-        navbar.classList.remove("responsive");
+    if (navbar.classList.contains("dropped")) {
+        navbar.classList.remove("dropped");
+        navlinks.style.maxHeight = "0px";
     }
+
     //
     else {
-        navbar.classList.add("responsive");
-    }
-}
+        navbar.classList.add("dropped");
+        navlinks.style.maxHeight = "217px";
+    };
+
+};
+
+
+//
+var navlinks = document.getElementById("navlinks");
+navlinks.style.maxHeight = "0px";
 
 
 //
 const route = window.location.pathname;
+
+
 //
-const links = document.querySelectorAll(".link");
+const navanchors = document.querySelectorAll(".navanchor");
+
+
 //
-links.forEach(link => {
+navanchors.forEach(navanchor => {
+    
     //
-    if (link.getAttribute("href") === route) {
-        link.classList.add("active");
+    if (navanchor.getAttribute("href") === route) {
+        navanchor.classList.add("active");
     }
+    
     //
     else {
-        link.classList.remove("active");
-    }
-})
+        navanchor.classList.remove("active");
+    };
+
+});

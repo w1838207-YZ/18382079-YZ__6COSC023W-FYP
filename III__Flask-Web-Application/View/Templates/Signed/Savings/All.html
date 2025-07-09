@@ -1,0 +1,43 @@
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+{% extends "Shared/Base.html" %}
+
+{% block title %}DFClassify - Savings (All){% endblock %}
+
+{% block content %}
+{% include "Signed/Navbar.html" %}
+{% include "Shared/Alert.html" %}
+        <br>
+        <br>
+        <form>
+            <div class="container1" id="savings">
+                <table name="outcomes" id="outcomes">
+                    <tr>
+                        <th>Date/Time Saved At</th>
+                        <th>Outcome Result</th>
+                        <th>Outcome Image</th>
+                        <th>Outcome Model</th>
+                        <th>Date/Time <br>to Delete</th>
+                        <th>View in Full</th>
+                    </tr>
+                    {% for x in range(every_saving_from_user | length) %}
+                    {% set saving = every_saving_from_user[x] %}
+                    <tr>
+                        <td><input type="text" class="tagInput" value="{{ saving.dateOfUpload }}" readonly></td>
+                        <td><input type="text" class="tagInput" value="{{ saving.predictedResult }}" readonly></td>
+                        <td><input type="text" class="tagInput" value="{{ saving.uploadedImage }}" readonly></td>
+                        <td><input type="text" class="tagInput" value="{{ saving.modelUsed }}" readonly></td>
+                        <td><input type="text" class="tagInput" value="{{ saving.dateToDelete }}" readonly></td>
+                        <td>
+                            <a href="/saving/{{saving.classifyID}}"><b>Check it Out!<b></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </form>
+{% endblock %}
