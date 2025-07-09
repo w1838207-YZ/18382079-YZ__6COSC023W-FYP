@@ -43,25 +43,25 @@ def unsigned_upload_page():
         
         #
         if ("image" not in request.files):
-            flash("> A! image not in request","error")
+            flash("Error! In order to submit this form, you need to pick a human JPG/JPEG image and a CNN model to classify with.","error")
             return redirect(request.url)
         
         #
         upload_file = request.files["image"]
         if (upload_file.filename==""):
-            flash("> B! no image uploaded","error")
+            flash("Error! In order to submit this form, you need to pick a human JPG/JPEG image and a CNN model to classify with.","error")
             return redirect(request.url)
         
         #
         upload_name = secure_filename(upload_file.filename)
         if (not(Support_Upload.is_file_allowed(upload_name))):
-            flash("> C! image type unsupported","error")
+            flash("Error! In order to submit this form, you need to pick a human JPG/JPEG image and a CNN model to classify with.","error")
             return redirect(request.url)
         
         #
         picked_model = request.form.get("model")
         if (not(picked_model)):
-            flash("> D! no model picked","error")
+            flash("Error! In order to submit this form, you need to pick a human JPG/JPEG image and a CNN model to classify with.","error")
             return redirect(request.url)
         
         #
@@ -125,25 +125,25 @@ def signed_upload_page(signed_user):
         
         #
         if ("image" not in request.files):
-            flash("> A! image not in request","error")
+            flash("Error! In order to submit this form, you need to pick a human JPG/JPEG image and a CNN model to classify with.","error")
             return redirect(request.url)
         
         #
         upload_file = request.files["image"]
         if (upload_file.filename==""):
-            flash("> B! no image uploaded","error")
+            flash("Error! In order to submit this form, you need to pick a human JPG/JPEG image and a CNN model to classify with.","error")
             return redirect(request.url)
         
         #
         upload_name = secure_filename(upload_file.filename)
         if (not(Support_Upload.is_file_allowed(upload_name))):
-            flash("> C! image type unsupported","error")
+            flash("Error! In order to submit this form, you need to pick a human JPG/JPEG image and a CNN model to classify with.","error")
             return redirect(request.url)
         
         #
         picked_model = request.form.get("model")
         if (not(picked_model)):
-            flash("> D! no model picked","error")
+            flash("Error! In order to submit this form, you need to pick a human JPG/JPEG image and a CNN model to classify with.","error")
             return redirect(request.url)
         
         #

@@ -75,27 +75,27 @@ def register_page():
         
         #
         if not(Support_Register.input_complete_validation(input_forename,input_surname,input_email,input_password,input_confirm)):
-            flash("> A input incomplete","error")
+            flash("Error! In order to submit this form, you need to give a full name, valid email, and strong confirmed password.","error")
             return redirect(request.url)
         
         #
         if not(Support_Register.email_space_validation(input_email)):
-            flash("> B email spaced","error")
+            flash("Error! In order to submit this form, you need to give a full name, valid email, and strong confirmed password.","error")
             return redirect(request.url)
         
         #
         if not(Support_Register.pattern_valid_validation(input_email)):
-            flash("> C empattern invalid","error")
+            flash("Error! In order to submit this form, you need to give a full name, valid email, and strong confirmed password.","error")
             return redirect(request.url)
         
         #
         if not(Support_Register.password_confirmed_validation(input_password,input_confirm)):
-            flash("> D password unconfirmed","error")
+            flash("Error! In order to submit this form, you need to give a full name, valid email, and strong confirmed password.","error")
             return redirect(request.url)
         
         #
         if not(Support_Register.password_strength_validation(input_password)):
-            flash("> E password weak","error")
+            flash("Error! In order to submit this form, you need to give a full name, valid email, and strong confirmed password.","error")
             return redirect(request.url)
         
         #
@@ -108,10 +108,10 @@ def register_page():
             new_user = User(userEmail=input_email,userPassword=password_salted_and_hashed,userFirstName=input_forename,userLastName=input_surname)
             app_database.session.add(new_user)
             app_database.session.commit()
-            flash("> Hello World! registered","success")
+            flash("You've successfully created a new user account~ Try to log in from the login page.","success")
             return redirect("/login")
         
         #
         except:
-            flash("> YZ can't register","error")
+            flash("Error! A user account cannot be created with the credentials provided here.","error")
             return redirect(request.url)

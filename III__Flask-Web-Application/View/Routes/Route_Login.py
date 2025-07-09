@@ -60,28 +60,28 @@ def login_page():
         
         #
         if not(Support_Login.input_complete_validation(input_email,input_password)):
-            flash("> A input incomplete","error")
+            flash("Error! In order to submit this form, you need to give a valid email and a strong confirmed password.","error")
             return redirect(request.url)
         
         #
         if not(Support_Login.email_space_validation(input_email)):
-            flash("> B email spaced","error")
+            flash("Error! In order to submit this form, you need to give a valid email and a strong confirmed password.","error")
             return redirect(request.url)
         
         #
         if not(Support_Login.pattern_valid_validation(input_email)):
-            flash("> C empattern invalid","error")
+            flash("Error! In order to submit this form, you need to give a valid email and a strong confirmed password.","error")
             return redirect(request.url)
         
         #
         existing_user = Support_Login.user_exists_validation(input_email)
         if not(existing_user):
-            flash("> D user unidentified","error")
+            flash("Error! User identification and verification is not possible with the credentials provided here.","error")
             return redirect(request.url)
         
         #
         if not(Support_Login.password_match_validation(input_password,existing_user)):
-            flash("> E user unverified","error")
+            flash("Error! User identification and verification is not possible with the credentials provided here.","error")
             return redirect(request.url)
         
         #
@@ -93,10 +93,10 @@ def login_page():
             }
             existing_user.userLastLogged = datetime.now()
             app_database.session.commit()
-            flash(f"> Hello World! logged {session["user"]["name"]}","success")
+            flash(f"You've successfully logged into your user account~ Welcome in, {session["user"]["name"]}.","success")
             return redirect("/")
         
         #
         except:
-            flash("> YZ can't log","error")
+            flash("Error! No user accounts can be logged into with the credentials provided here.","error")
             return redirect(request.url)
