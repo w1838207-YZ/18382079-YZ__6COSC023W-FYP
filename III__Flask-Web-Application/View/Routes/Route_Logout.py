@@ -21,15 +21,15 @@ def logout_page():
         #
         if ("yes" in request.form):
             session.clear()
-            flash("> 1! now out","success")
+            flash("You've successfully just logged out of your user account~ We hope you return again in the future!","success")
             return redirect("/")
         
         #
         elif ("no" in request.form):
-            flash("> 2! still in","success")
+            flash("No worries~ You're still logged into your user account.","success")
             return redirect("/")
         
         #
         else:
-            flash("> YZ! cannot logout","error")
+            flash("Error! You need to indicate whether or not you want to log out on the logout page.","error")
             return redirect("/")

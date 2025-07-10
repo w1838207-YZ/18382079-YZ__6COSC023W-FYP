@@ -39,7 +39,7 @@ def unsigned_prediction_page():
         
         #
         if not(session.get("data_to_prediction_page")):
-            flash("> Error! lost data, must reupload again","error")
+            flash("Error! Temporary data about the prior prediction was discarded, so you'll need to reupload to view it again.","error")
             return redirect("/")
         
         #
@@ -62,7 +62,7 @@ def unsigned_prediction_page():
         upload_file.close()
         
         #
-        flash("> prediction here","success")
+        flash("Here's your classification result(s)~ Leaving this page will discard this. For future, sign in to save results.","success")
         return render_template("Unsigned/Index/Prediction.html",template_context=template_context,image_encoded_string=image_encoded_string)
 
 
@@ -76,7 +76,7 @@ def signed_prediction_page(signed_user):
         
         #
         if not(session.get("data_to_prediction_page")):
-            flash("> Error! lost data, must reupload again","error")
+            flash("Error! Temporary data about the prior prediction was discarded, so you'll need to reupload to view it again.","error")
             return redirect("/")
         
         #
@@ -103,7 +103,7 @@ def signed_prediction_page(signed_user):
         name_offset = name_offset.replace(upload_name,"")
         
         #
-        flash("> prediction here","success")
+        flash("Here's your classification result~ As you're signed in, you can save this under your account if you'd like.","success")
         return render_template("Signed/Index/Prediction.html",template_context=template_context,image_encoded_string=image_encoded_string,name_offset=name_offset)
     
     #
@@ -111,7 +111,7 @@ def signed_prediction_page(signed_user):
         
         #
         if ("no" in request.form):
-            flash("Haven't saved to DB","success")
+            flash("Not to worry, no results of yours have been saved under your user account.","success")
             return redirect("/")
         
         #
@@ -129,7 +129,7 @@ def signed_prediction_page(signed_user):
             #
             duration = request.form.get("duration")
             if (not(duration)):
-                flash("No selected save duration","error")
+                flash("Error! In order to save results, you need to provide a time duration on a prediction page.","error")
                 return redirect("/")
             
             #
@@ -165,12 +165,12 @@ def signed_prediction_page(signed_user):
                 if not(os.path.exists(path_for_saved_image)):
                     shutil.copy(path_to_temporary_file,path_for_saved_image)
                 os.remove(path_to_temporary_file)
-                flash("Feel like an idiot","success")
+                flash("You've successfully saved your classification result(s)~ You can review them on your savings page.","success")
                 
             #
             except Exception as error:
                 print("Here is my problem:  ",error)
-                flash("Failed to save prediction(s)","error")
+                flash("Error! Your prediction result(s) could not be saved for an unknown reason.","error")
             
             #
             finally:
@@ -178,5 +178,5 @@ def signed_prediction_page(signed_user):
 
         #
         else:
-            flash("No save decision made","error")
+            flash("Error! You need to indicate whether or not you want to save results on a prediction page.","error")
             return redirect("/")
