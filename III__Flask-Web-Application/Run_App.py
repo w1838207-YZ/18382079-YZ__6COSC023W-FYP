@@ -13,6 +13,9 @@ from Session.Add_Sessions import server_side_session
 #
 from View.Routes import Route_Controller, Delete_Middleware
 
+#
+import os
+
 
 
 
@@ -47,7 +50,10 @@ def main():
     Route_Controller.outline_app_routes(app)
     
     #
-    app.run()
+    port = int(os.environ.get("PORT",5000))
+    
+    #
+    app.run(host="0.0.0.0",port=port)
 
 
 
